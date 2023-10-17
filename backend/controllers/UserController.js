@@ -1,5 +1,7 @@
+// model
 const User = require('../models/User');
 
+// libraries
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
 
@@ -143,5 +145,13 @@ module.exports = class UserController {
             return;
         }
         res.status(200).json({ user });
+    }
+    static async editUser(req, res) {
+
+        res.status(200).json({
+            message: 'Deu certo o update!'
+        });
+        return;
+
     }
 };
