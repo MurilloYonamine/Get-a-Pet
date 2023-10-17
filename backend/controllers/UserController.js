@@ -93,14 +93,28 @@ module.exports = class UserController {
         }
 
         // check if password match with db password
-        const checkPassword = await bcrypt.compare(password, user.password)
+        const checkPassword = await bcrypt.compare(password, user.password);
 
-        if(!checkPassword) {
+        if (!checkPassword) {
             res.status(422).json({
                 message: 'Senha inválida!'
             });
             return;
         }
         await createUserToken(user, req, res);
+    }
+
+    static async checkUser(req, res) {
+
+        let currentUser;
+
+        console.log(req.headers.authorization);
+
+        if (req.headers.authorization) {
+
+        } else {
+            currentUser = null;
+        }
+        res.status(200).send(currentUser);
     }
 };
