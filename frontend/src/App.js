@@ -11,19 +11,24 @@ import Login from './components/pages/Auth/Login';
 import Register from './components/pages/Auth/Register';
 import Home from './components/pages/Home';
 
+/* Context */
+import { UserProvider } from './context/UserContext';
+
 class App extends Component {
   render() {
     return (
       <Router>
-        <Navbar />
-        <Container>
-          <Routes>
-            <Route path='/' exact element={<Home />} />
-            <Route path='/login' element={<Login />} />
-            <Route path='/register' element={<Register />} />
-          </Routes>
-        </Container>
-        <Footer />
+        <UserProvider>
+          <Navbar />
+          <Container>
+            <Routes>
+              <Route path='/' exact element={<Home />} />
+              <Route path='/login' element={<Login />} />
+              <Route path='/register' element={<Register />} />
+            </Routes>
+          </Container>
+          <Footer />
+        </UserProvider>
       </Router>
     );
   }
