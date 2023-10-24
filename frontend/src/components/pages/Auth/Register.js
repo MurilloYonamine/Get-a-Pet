@@ -1,12 +1,16 @@
-import { useState } from 'react';
+import { useContext, useState } from 'react';
 
 import Input from '../../form/input';
 import { Link } from 'react-router-dom';
 
 import styles from '../../form/form.module.css';
 
+/* Context */
+import { Context } from '../../../context/UserContext';
+
 function Register() {
     const [user, setUser] = useState({});
+    const { register } = useContext(Context);
 
     function handleChange(e) {
         setUser({ ...user, [e.target.name]: e.target.value });
@@ -14,9 +18,7 @@ function Register() {
 
     function handleSubmit(e) {
         e.preventDefault();
-
-        // enviar o usuário para o banco
-        console.log(user)
+        register(user);
     }
 
     return (
@@ -27,7 +29,7 @@ function Register() {
                 <Input text="Telefone" type="text" name="phone" placeholder="Digite o seu telefone" handleOnChange={handleChange} />
                 <Input text="E-mail" type="email" name="email" placeholder="Digite o seu e-mail" handleOnChange={handleChange} />
                 <Input text="Senha" type="password" name="senha" placeholder="Digite a sua senha" handleOnChange={handleChange} />
-                <Input text="Confirmação de senha" type="password" name="senha" placeholder="Confirme a sua senha" handleOnChange={handleChange} />
+                <Input text="Confirmação de senha" type="password" name="confirmarSenha" placeholder="Confirme a sua senha" handleOnChange={handleChange} />
 
                 <input type="submit" value="Cadastrar" />
             </form>
